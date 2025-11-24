@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>eMercado - Carrito</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+
+    <link href="css/cart.css" rel="stylesheet" />
+    <script src="js/cart.js" type="module"></script>
+    <script src="js/init.js"></script>
+</head>
+
+<body class="d-none">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="./">e-Mercado</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="./">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./categories.html">Categorias</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./sell.html">Vender</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link cart-link" href="./cart.html">
+                                <img src="./img/shopping-cart.png" alt="shopping-cart.png">
+                                <span class="badge" id="number-products">0</span>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="./img/img_perfil.png" alt="img-perfil.png" id="img-profile-menu" />
+                                <span id="profile-name">Nombre</span>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li>
+                                    <a class="dropdown-item" href="./my-profile.html">Mi Perfil</a>
+                                </li>
+                                <li class="checkbox-theme">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="switchTheme">
+                                        <label class="form-check-label" for="switchTheme">
+                                            Cambiar tema
+                                        </label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" id="btnLogOut" href="./login.html">Cerrar Sesion</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="container" id="main-container">
+
+        <table id="cart-table">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                </tr>
+            </thead>
+            <tbody id="cart-products-body">
+                <tr id="no-products" class="d-none">
+                    <td colspan="3">No hay productos en el carrito.</td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="resumen">
+            <h3>Resumen de la compra</h3>
+            <hr />
+            <p id="subtotal">Subtotal: $0</p>
+            <hr class="d-none" id="payment-method-hr">
+            <p id="payment-method-label" class="d-none">Envio </p>
+            <hr />
+            <h4 id="total">Total $0</h4>
+
+            <button id="shipping-method-button" class="button-acordeon">
+                <span>
+                    Tipo de envío
+                </span>
+                <span>
+                    🡳
+                </span>
+            </button>
+
+            <select id="shipping-method" class="payments-selects" required style="display: none;">
+                <option value="" disabled selected>Seleccione un tipo de envío</option>
+                <option value="standard">
+                    <span>
+                        Standard
+                    </span>
+                    <span>
+                        🚚
+                    </span>
+                    <span id="standard">
+                        12-15 días (5%)
+                    </span>
+                </option>
+                <option value="express">
+                    <span>
+                        Express
+                    </span>
+                    <span>
+                        🚚🪽
+                    </span>
+                    <span id="express">
+                        5-8 días (7%)
+                    </span>
+                </option>
+                <option value="premium">
+                    <span>
+                        Premium
+                    </span>
+                    <span>
+                        🚚 🚀
+                    </span>
+                    <span id="premium">
+                        2-5 días (15%)
+                    </span>
+                </option>
+            </select>
+
+            <button id="direction-button" class="button-acordeon">
+                <span>
+                    Dirección de envío
+                </span>
+                <span>
+                    🡳
+                </span>
+            </button>
+            <div class="direction-container" style="display: none;">
+                <input type="text" id="departamento" placeholder="Ingrese su departamento" required />
+                <input type="text" id="ciudad" placeholder="Ingrese su ciudad" required />
+                <div>
+                    <input type="text" id="calle" placeholder="Ingrese su calle" required
+                        style="margin-bottom: 10px;" />
+                    <input type="text" id="numero" placeholder="Ingrese su N° de calle" required />
+                </div>
+                <input type="text" id="esquina" placeholder="Ingrese su esquina" required />
+            </div>
+
+            <button id="payment-method-button" class="button-acordeon">
+                <span>
+                    Método de pago
+                </span>
+                <span>
+                    🡳
+                </span>
+            </button>
+
+            <select id="payment-method" required>
+                <option value="" disabled selected>Seleccione un método de pago</option>
+                <option value="credit-card">Tarjeta de crédito 💳</option>
+                <option value="debit-card">Tarjeta de débito 💳</option>
+                <option value="bank-transfer">Transferencia bancaria 🎫</option>
+                <option value="cash-on-delivery">Pago en entrega 💵</option>
+            </select>
+
+
+            <div id="card-details" class="d-none">
+                <input type="text" id="card-holder-name" placeholder="Nombre del titular" maxlength="50" required />
+                <input type="text" id="card-number" placeholder="Número de tarjeta" maxlength="16" required />
+                <input type="text" id="card-expiration" placeholder="Fecha de vencimiento (MM/AA)" maxlength="5"
+                    required />
+                <input type="text" id="card-cvv" placeholder="CVV" maxlength="4" required />
+            </div>
+
+            <select id="installments" class="d-none" required>
+                <option value="" disabled selected>Seleccione cantidad de cuotas</option>
+                <option value="1">1 cuota sin interés</option>
+                <option value="3">3 cuotas sin interés</option>
+                <option value="6">6 cuotas sin interés</option>
+                <option value="12">12 cuotas sin interés</option>
+            </select>
+
+            <div id="bank-details" class="d-none">
+                <h6>Número de cuenta bancaria:</h6>
+                <p>1111-1111-1111</p>
+            </div>
+
+            <button id="buy-button">Finalizar compra</button>
+        </div>
+        </div>
+
+
+    </main>
+    <footer class="text-muted">
+        <div class="container">
+            <p class="float-end">
+                <a href="#">Volver arriba</a>
+            </p>
+            <p>
+                Este sitio forma parte de
+                <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
+            </p>
+        </div>
+    </footer>
+    <div id="spinner-wrapper">
+        <div class="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
