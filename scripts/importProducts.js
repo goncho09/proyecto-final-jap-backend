@@ -1,7 +1,7 @@
-import fs from 'fs';
-import path from 'path';
+const fs = require('fs');
+const path = require('path');
 
-export async function importarProductos(pool, folderPath) {
+async function importarProductos(pool, folderPath) {
   const files = fs.readdirSync(folderPath);
 
   const productos = [];
@@ -100,3 +100,7 @@ export async function importarProductos(pool, folderPath) {
   console.clear();
   console.log('✔ Importación de productos completa.');
 }
+
+module.exports = {
+  importarProductos,
+};

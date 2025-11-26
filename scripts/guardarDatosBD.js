@@ -1,17 +1,13 @@
-import pool from '../config/db.js';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+const pool = require('../config/db.js');
+const path = require('path');
 
-import { importarCategorias } from './importCategories.js';
-import { importarProductos } from './importProducts.js';
+const { importarCategorias } = require('./importCategories.js');
+const { importarProductos } = require('./importProducts.js');
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 const productsPath = path.join(__dirname, '../json/products');
 const categoriesPath = path.join(__dirname, '../json/cats/cat.json');
 
-try {
+async function executeScript() {
   await pool.execute('SET FOREIGN_KEY_CHECKS = 0');
   await pool.execute('TRUNCATE TABLE productos_relacionados');
   await pool.execute('TRUNCATE TABLE productos_imagenes');
@@ -22,6 +18,10 @@ try {
   await importarCategorias(pool, categoriesPath);
   await importarProductos(pool, productsPath);
   await pool.end();
+}
+
+try {
+  executeScript();
 } catch (error) {
   console.error(error);
 }

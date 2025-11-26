@@ -1,6 +1,6 @@
-import fs from 'fs';
+const fs = require('fs');
 
-export async function importarCategorias(pool, filePath) {
+async function importarCategorias(pool, filePath) {
   const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
 
   for (const cat of data) {
@@ -18,3 +18,7 @@ export async function importarCategorias(pool, filePath) {
   console.clear();
   console.log('Importación de categorías completa.');
 }
+
+module.exports = {
+  importarCategorias,
+};
