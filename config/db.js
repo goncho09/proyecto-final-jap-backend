@@ -9,6 +9,7 @@ const pool = createPool({
   password: DB_PASS,
   database: DB_NAME,
   port: Number(DB_PORT),
+  //   multipleStatements: true,
 });
 
 pool
