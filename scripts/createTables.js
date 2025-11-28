@@ -19,6 +19,8 @@ async function executeSetup() {
     console.log('✅ Las tablas han sido creadas con éxito');
   } catch (err) {
     console.error('❌ Error:', err);
+  }finally {
+    conn.end();
   }
 }
 
