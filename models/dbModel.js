@@ -1,7 +1,5 @@
 const { createPool } = require('mysql2/promise');
-require('dotenv/config');
 
-// Deberian estar en un .env
 const pool = createPool({
   host: 'localhost',
   user: 'japuser',

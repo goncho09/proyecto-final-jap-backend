@@ -1,8 +1,8 @@
-const publishMsg = require('../json/sell/publish.json');
+const data = require('../models/readDataJson');
 
-function publish (req, res) {
+function publish (_, res) {
     try {
-        res.status(200).send(publishMsg);
+        res.status(200).send(data.readDataFromJson('sell', 'publish'));
     }catch {
         res.status(400).send({msg: "Ocurrio un error inesperado."});
     }
