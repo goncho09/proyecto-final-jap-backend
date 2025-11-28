@@ -1,7 +1,7 @@
 const pool = require('../config/db');
 
 async function postCart(req, res) {
-  const { userId, cart } = req.body;
+  const { userId, cart, shipping } = req.body;
 
   try {
     let total = 0;
@@ -9,6 +9,8 @@ async function postCart(req, res) {
       const price = parseFloat(item.price.split(' ')[1]);
       total += price * item.cantidad;
     }
+
+    total += shipping.cost;
 
     const hoy = new Date().toISOString().split('T')[0];
     const [result] = await pool.query(
