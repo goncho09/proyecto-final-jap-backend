@@ -15,7 +15,7 @@ function calculateTotal(cart, shipping) {
 async function saveCart(userId, cart, shipping) {
     const total = calculateTotal(cart, shipping);
     const hoy = new Date().toISOString().split('T')[0];
-    const [result] = await conn.query(
+    const [result] = await conn.queryResponse(
         'INSERT INTO ventas (usuario,total,fecha) VALUES (?,?,?)',
         [userId, total, hoy]
     );
@@ -25,7 +25,7 @@ async function saveCart(userId, cart, shipping) {
 
 async function saveCartDetails(cart, ventaID) {
 
-    await conn.query(
+    await conn.queryResponse(
         'INSERT INTO venta_detalle (ventaID, productoID, cantidad, precioUnitario,subtotal) VALUES ?',
         [
             cart.map((item) => [

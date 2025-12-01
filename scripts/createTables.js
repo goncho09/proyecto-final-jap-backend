@@ -14,13 +14,13 @@ async function executeSetup() {
       .filter((s) => s.length > 0);
 
     for (const stmt of statements) {
-      await conn.query(stmt);
+      await conn.queryResponse(stmt);
     }
     console.log('✅ Las tablas han sido creadas con éxito');
   } catch (err) {
     console.error('❌ Error:', err);
   }finally {
-    conn.end();
+    conn.pool.end();
   }
 }
 
